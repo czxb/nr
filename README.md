@@ -1,6 +1,6 @@
 nr<img src="https://github.com/czxa/Web_data_Source/raw/master/code_repository.png" align="right" /> 
 ========================================================
- [![](https://img.shields.io/badge/Repository-Web_data_source-brightgreen.svg?style=plastic)](http://www.czxa.top) [![](https://img.shields.io/badge/github-Stata&R-orange.svg?style=plastic)](http://www.czxa.top) [![](https://img.shields.io/badge/platform-Windows_os|Mac_os-orange.svg?style=plastic)](http://www.czxa.top) [![](https://img.shields.io/badge/Fork-102,124-orange.svg?style=social)](http://www.czxa.top)
+ [![](https://img.shields.io/badge/Repository-nr-brightgreen.svg?style=plastic)](http://www.czxa.top) [![](https://img.shields.io/badge/github-Stata&R-orange.svg?style=plastic)](http://www.czxa.top) [![](https://img.shields.io/badge/platform-Windows_os|Mac_os-orange.svg?style=plastic)](http://www.czxa.top) [![](https://img.shields.io/badge/Fork-102,124-orange.svg?style=social)](http://www.czxa.top)
 * 这里是我的最新存储库，里面存储了我的个人网站上的文章和学习笔记的数据以及处理程序，欢迎大家按照自己的需要下载.
 * 当然这里的程序你不需要下载也能直接使用，例如：
 > 假如我想在R中使用数据集menu.csv，可以使用如下命令：
