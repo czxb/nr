@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <title>wball</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.8.3/katex.min.css">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <style> 
+      /**
+ * prism.js Github theme based on GitHub's theme.
+ * @author Sam Clarke
+ */
+code[class*="language-"],
+pre[class*="language-"] {
+  color: #333;
+  background: none;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.4;
+
+  -moz-tab-size: 8;
+  -o-tab-size: 8;
+  tab-size: 8;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+/* Code blocks */
+pre[class*="language-"] {
+  padding: .8em;
+  overflow: auto;
+  /* border: 1px solid #ddd; */
+  border-radius: 3px;
+  /* background: #fff; */
+  background: #f5f5f5;
+}
+
+/* Inline code */
+:not(pre) > code[class*="language-"] {
+  padding: .1em;
+  border-radius: .3em;
+  white-space: normal;
+  background: #f5f5f5;
+}
+
+.token.comment,
+.token.blockquote {
+  color: #969896;
+}
+
+.token.cdata {
+  color: #183691;
+}
+
+.token.doctype,
+.token.punctuation,
+.token.variable,
+.token.macro.property {
+  color: #333;
+}
+
+.token.operator,
+.token.important,
+.token.keyword,
+.token.rule,
+.token.builtin {
+  color: #a71d5d;
+}
+
+.token.string,
+.token.url,
+.token.regex,
+.token.attr-value {
+  color: #183691;
+}
+
+.token.property,
+.token.number,
+.token.boolean,
+.token.entity,
+.token.atrule,
+.token.constant,
+.token.symbol,
+.token.command,
+.token.code {
+  color: #0086b3;
+}
+
+.token.tag,
+.token.selector,
+.token.prolog {
+  color: #63a35c;
+}
+
+.token.function,
+.token.namespace,
+.token.pseudo-element,
+.token.class,
+.token.class-name,
+.token.pseudo-class,
+.token.id,
+.token.url-reference .token.variable,
+.token.attr-name {
+  color: #795da3;
+}
+
+.token.entity {
+  cursor: help;
+}
+
+.token.title,
+.token.title .token.punctuation {
+  font-weight: bold;
+  color: #1d3e81;
+}
+
+.token.list {
+  color: #ed6a43;
+}
+
+.token.inserted {
+  background-color: #eaffea;
+  color: #55a532;
+}
+
+.token.deleted {
+  background-color: #ffecec;
+  color: #bd2c00;
+}
+
+.token.bold {
+  font-weight: bold;
+}
+
+.token.italic {
+  font-style: italic;
+}
+
+
+/* JSON */
+.language-json .token.property {
+  color: #183691;
+}
+
+.language-markup .token.tag .token.punctuation {
+  color: #333;
+}
+
+/* CSS */
+code.language-css,
+.language-css .token.function {
+  color: #0086b3;
+}
+
+/* YAML */
+.language-yaml .token.atrule {
+  color: #63a35c;
+}
+
+code.language-yaml {
+  color: #183691;
+}
+
+/* Ruby */
+.language-ruby .token.function {
+  color: #333;
+}
+
+/* Markdown */
+.language-markdown .token.url {
+  color: #795da3;
+}
+
+/* Makefile */
+.language-makefile .token.symbol {
+  color: #795da3;
+}
+
+.language-makefile .token.variable {
+  color: #183691;
+}
+
+.language-makefile .token.builtin {
+  color: #0086b3;
+}
+
+/* Bash */
+.language-bash .token.keyword {
+  color: #0086b3;
+}html body{font-family:"Helvetica Neue",Helvetica,"Segoe UI",Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ul,html body>ol{margin-bottom:16px}html body ul,html body ol{padding-left:2em}html body ul.no-list,html body ol.no-list{padding:0;list-style-type:none}html body ul ul,html body ul ol,html body ol ol,html body ol ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:bold;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:bold}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em !important;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::before,html body code::after{letter-spacing:-0.2em;content:"\00a0"}html body pre>code{padding:0;margin:0;font-size:.85em !important;word-break:normal;white-space:pre;background:transparent;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;font-size:.85em !important;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:before,html body pre tt:before,html body pre code:after,html body pre tt:after{content:normal}html body p,html body blockquote,html body ul,html body ol,html body dl,html body pre{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body pre,html body code{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview .pagebreak,.markdown-preview .newpage{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center !important}.markdown-preview:not([for="preview"]) .code-chunk .btn-group{display:none}.markdown-preview:not([for="preview"]) .code-chunk .status{display:none}.markdown-preview:not([for="preview"]) .code-chunk .output-div{margin-bottom:16px}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0}@media screen and (min-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px)}}@media screen and (max-width:914px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode]) .markdown-preview{font-size:14px !important;padding:1em}}@media print{html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for="html-export"]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,0.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,0.66);border:4px solid rgba(150,150,150,0.66);background-clip:content-box}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{padding:0 1.6em;margin-top:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc li{margin-bottom:.8em}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc ul{list-style-type:none}html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% -  300px);padding:2em calc(50% - 457px -  150px);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for="html-export"]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for="html-export"]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+img {
+  positon: relative;
+  width: 100%;
+  left: 10%;
+  /*left为（img父元素元素的width - img元素自己的width)÷2*/
+}
+ 
+      </style>
+    </head>
+    <body for="html-export">
+      <div class="mume markdown-preview   ">
+      <h1><center>wball——可视化百分比数据</center></h1>
+<p>这是一个绘制水球图的Stata命令，你只需要给出一列数据即可绘制出非常炫酷的水球图。一个最简单的示例如下：<br>
+<img src="https://github.com/czxa/Web_data_Source/raw/master/ewball.png" alt=""><br>
+<code>代码</code></p>
+<pre class="language-py">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span>
+</pre>
+<h3 class="mume-header" id="center-%E7%9B%AE%E5%BD%95-center"><center> 目录 </center></h3>
+
+<ul>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> <a href="#%E5%AE%89%E8%A3%85"><strong><code>1.安装</code></strong></a></li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> <a href="#%E8%AF%AD%E6%B3%95"><strong><code>2.语法</code></strong></a></li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> <a href="#%E7%A4%BA%E4%BE%8B"><strong><code>3.示例</code></strong></a>
+<ul>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> <a href="#%E4%B8%BB%E9%A2%98"><strong><code>3.1.主题</code></strong></a></li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> <a href="#%E6%B0%B4%E7%90%83%E4%B8%8A%E7%9A%84%E6%96%87%E5%AD%97"><strong><code>3.2.水球上的文字</code></strong></a></li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> <a href="#%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0"><strong><code>3.3.文件名称</code></strong></a></li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> <a href="#%E5%A4%96%E8%A7%82"><strong><code>3.4.外观</code></strong></a></li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> <a href="#%E6%B0%B4%E7%90%83%E7%A9%BA%E7%99%BD%E5%8C%BA%E5%9F%9F%E7%9A%84%E9%A2%9C%E8%89%B2"><strong><code>3.5.水球空白区域的颜色</code></strong></a></li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> <a href="#%E6%B0%B4%E6%B3%A2%E7%9A%84%E6%B3%A2%E5%B3%B0%E9%AB%98%E5%BA%A6"><strong><code>3.6水波的波峰高度</code></strong></a></li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> <a href="#%E6%B0%B4%E6%B3%A2%E7%9A%84%E9%A2%9C%E8%89%B2"><strong><code>3.7水波的颜色</code></strong></a></li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> <a href="#%E4%BD%BF%E7%94%A8%E9%A2%9C%E8%89%B2%E7%9A%84%E5%90%8D%E7%A7%B0"><strong><code>3.7.1使用颜色的名称</code></strong></a></li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> <a href="#%E4%BD%BF%E7%94%A8%E8%89%B2%E5%8D%A1"><strong><code>3.7.2使用色卡</code></strong></a></li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> <a href="#%E4%BD%BF%E7%94%A816%E8%BF%9B%E5%88%B6%E8%89%B2%E5%8F%B7"><strong><code>3.7.3使用16进制色号</code></strong></a></li>
+</ul>
+</li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> <a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B0%B4%E7%90%83%E5%A4%96%E8%A7%82"><strong><code>4.自定义水球外观</code></strong></a></li>
+<li><input type="checkbox" class="task-list-item-checkbox" checked> <a href="#%E6%9B%B4%E5%A4%9A%E9%85%8D%E7%BD%AE%E6%AD%A3%E5%9C%A8%E6%8E%A2%E7%B4%A2%E4%B8%AD"><strong><code>5.更多配置正在探索中</code></strong></a></li>
+</ul>
+<h4 class="mume-header" id="%E5%AE%89%E8%A3%85">安装</h4>
+
+<h5 class="mume-header" id="center%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F%E4%B8%80center"><center>安装方式一：</center></h5>
+
+<blockquote>
+<p>第一种安装是使用github命令安装本命令：<br>
+首先你需要安装github命令，这个命令来源Haghish.</p>
+</blockquote>
+<pre class="language-py">net install github<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">(</span><span class="token string">"https://haghish.github.io/github/"</span><span class="token punctuation">)</span>
+</pre>
+<blockquote>
+<p>然后使用github命令安装wball命令：</p>
+</blockquote>
+<pre class="language-py">github install czxa<span class="token operator">/</span>wball<span class="token punctuation">,</span> replace
+</pre>
+<blockquote>
+<p>推荐使用这种安装方法，<code>因为github安装Stata外部命令的最后会运行一个dependency.do</code>，这里面有该外部命令依赖的其它外部命令的安装代码。</p>
+</blockquote>
+<h5 class="mume-header" id="center%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95%E4%BA%8Ccenter"><center>安装方法二：</center></h5>
+
+<blockquote>
+<p>第二种安装方法是直接使用net命令安装：</p>
+</blockquote>
+<pre class="language-py">net install wball<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">(</span>http<span class="token punctuation">:</span><span class="token operator">//</span>www<span class="token punctuation">.</span>czxa<span class="token punctuation">.</span>top<span class="token operator">/</span>wball<span class="token punctuation">)</span>
+</pre>
+<blockquote>
+<p>但是由于这个命令还依赖了我的另外一些命令，所以需要再安装这些依赖的命令：</p>
+</blockquote>
+<pre class="language-py">net install fw<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">(</span>http<span class="token punctuation">:</span><span class="token operator">//</span>www<span class="token punctuation">.</span>czxa<span class="token punctuation">.</span>top<span class="token operator">/</span>fw<span class="token punctuation">)</span>
+</pre>
+<h4 class="mume-header" id="%E8%AF%AD%E6%B3%95">语法</h4>
+
+<blockquote>
+<p>这个命令使用了很多的选择项，使得你能够通过选择项来自定义自己的水球图。</p>
+</blockquote>
+<pre class="language-js">wball arg1 arg2 arg3 ···
+      <span class="token punctuation">[</span><span class="token punctuation">,</span>
+      <span class="token function">text</span><span class="token punctuation">(</span>string<span class="token punctuation">)</span>
+      <span class="token function">htmlname</span><span class="token punctuation">(</span>numeric<span class="token punctuation">)</span>
+      <span class="token function">radius</span><span class="token punctuation">(</span>numeric<span class="token punctuation">)</span>
+      <span class="token function">scheme</span><span class="token punctuation">(</span>string<span class="token punctuation">)</span>
+      <span class="token function">shape</span><span class="token punctuation">(</span>string<span class="token punctuation">)</span>
+      <span class="token function">waveanimation</span><span class="token punctuation">(</span>string<span class="token punctuation">)</span>
+      <span class="token function">bordercolor</span><span class="token punctuation">(</span>string<span class="token punctuation">)</span>
+      <span class="token function">borderwidth</span><span class="token punctuation">(</span>numeric<span class="token punctuation">)</span>
+      <span class="token function">shadowcolor</span><span class="token punctuation">(</span>string<span class="token punctuation">)</span>
+      <span class="token function">shadowblur</span><span class="token punctuation">(</span>numeric<span class="token punctuation">)</span>
+      <span class="token function">color</span><span class="token punctuation">(</span>string<span class="token punctuation">)</span>
+      <span class="token function">outline</span><span class="token punctuation">(</span>string<span class="token punctuation">)</span>
+      <span class="token function">amplitude</span><span class="token punctuation">(</span>numeric<span class="token punctuation">)</span>
+      <span class="token function">animationduration</span><span class="token punctuation">(</span>numeric<span class="token punctuation">)</span>
+      <span class="token function">direction</span><span class="token punctuation">(</span>string<span class="token punctuation">)</span>
+      <span class="token function">animationduration</span><span class="token punctuation">(</span>numeric<span class="token punctuation">)</span>
+      <span class="token function">wavecolor</span><span class="token punctuation">(</span>string<span class="token punctuation">)</span><span class="token punctuation">]</span>
+</pre>
+<h5 class="mume-header" id="%E5%8F%82%E6%95%B0">参数</h5>
+
+<p><code>arg1</code> <code>arg2</code> <code>arg3</code> ··· 是一列要可视化的数据，将会被反映在水球的每层波浪的高度上。取值范围建议为<code>0-1</code>，建议<code>从大到小排列</code>。理论上来说，你可以使用任意数量的参数，当然必须要有的。</p>
+<h5 class="mume-header" id="%E9%80%89%E9%A1%B9">选项</h5>
+
+<ul>
+<li><span style="color:green;">冒号表明该选择项可以简写为冒号前面的部分。</span><br>
+<strong><code>t:ext(string)</code></strong>: 控制水球上的文字，换行使用<code>\n</code>，事实上可以通过换行和空格控制文字的位置，默认为最大的数据的对应的百分数；<br>
+<strong><code>html:name(string)</code></strong>:设置html文件的名称，默认值为<span style="color:blue;">fw_example.html</span>；<br>
+<strong><code>r:adius(numeric)</code></strong>: 控制水球的大小，默认值为<span style="color:blue;">80</span>；<br>
+<strong><code>sch:eme(string)</code></strong>: 控制绘图的主题，有<code>dark</code>/<code>roma</code>/<code>vintage</code>/<code>macarons</code>/<code>infographic</code>/<code>shine</code>六种可选，默认<span style="color:blue;">dark</span>主题；<br>
+<strong><code>sha:pe(string)</code></strong>: 控制水球的形状，支持自定义，系统形状有<code>github</code>/<code>tax</code>/<code>wechat</code>/<code>trunk</code>/<code>weibo</code>/<code>alipay</code>/<code>baidu</code>/<code>wechat1</code>/<code>diamond</code>/<code>rect</code>/<code>roundRect</code>/<code>pin</code>/<code>circle</code>/<code>echarts</code>/<code>cup</code>/<code>arrow</code>/<code>cylinder</code>/<code>man3star</code>/<code>triangle</code>/<code>women1-women5</code>/<code>light</code>/<code>pen</code>/<code>container</code>/<code>mail</code>/<code>folder</code>/<code>battery</code>/<code>qq</code>/<code>wechatmoments</code>/<code>apple</code>/<code>chinamap</code>可选，如果你想自定义形状可以点击文末的链接跳转到项目主页查看如何自定义水球的形状，默认形状为<span style="color:blue;">章鱼猫</span>；<br>
+<strong><code>wavea:nimation(string)</code></strong>: 控制水球内的水波是否波动，可以取值true/false，默认<span style="color:blue;">true</span>；<br>
+<strong><code>borderc:olor(string)</code></strong>: 控制水球的边界颜色，支持各种颜色系统；<br>
+<strong><code>borderw:idth(numeric)</code></strong>: 控制水球的边界宽度，默认值为<span style="color:blue;">3</span>；<br>
+<strong><code>shadowc:olor(string)</code></strong>: 控制水球的边界阴影颜色， 默认值为<span style="color:blue;">grey</span>；<br>
+<strong><code>shadowb:lur(numeric)</code></strong>: 控制水球光晕的大小，默认取值<span style="color:blue;">20</span>；<br>
+<strong><code>color(string)</code></strong>: 控制水球空白区域的颜色， 默认值为<span style="color:blue;">grey</span>；<br>
+<strong><code>outl:ine(string)</code></strong>: 控制是否显示水球的轮廓，可以选择true/false， 默认值为<span style="color:blue;">false</span>；<br>
+<strong><code>a:mplitude(numeric)</code></strong>: 控制水球内水波的波峰高度，默认取值<span style="color:blue;">30</span>；<br>
+<strong><code>d:irection(string)</code></strong>: 控制水球内水波流动的方向，取值right/left， 默认值为<span style="color:blue;">right</span>；<br>
+<strong><code>animationd:uration(numeric)</code></strong>: 控制水球内水波波动的快慢，默认取值<span style="color:blue;">2000</span>；<br>
+<strong><code>wavec:olor(string)</code></strong>: 根据给定的颜色列表控制水波的颜色，颜色列表的颜色数目如果少于水波的数目，颜色将会循环使用。同时支持使用色卡<code>card1-card7</code>，默认取值<span style="color:blue;">card1</span>。</li>
+</ul>
+<h4 class="mume-header" id="%E7%A4%BA%E4%BE%8B">示例</h4>
+
+<h5 class="mume-header" id="%E4%B8%BB%E9%A2%98">主题</h5>
+
+<ul>
+<li><code>dark</code>:</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewball.png" alt=""></p>
+<pre class="language-py">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> sch<span class="token punctuation">(</span>dark<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li><code>roma</code>:</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballroma.png" alt=""></p>
+<pre class="language-py">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> sch<span class="token punctuation">(</span>roma<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li><code>vintage</code>:</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballvintage.png" alt=""></p>
+<pre class="language-py">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> sch<span class="token punctuation">(</span>vintage<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li><code>macarons</code>:</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballmacarons.png" alt=""></p>
+<pre class="language-py">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> sch<span class="token punctuation">(</span>macarons<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li><code>infographic</code>:</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballinfographic.png" alt=""></p>
+<pre class="language-py">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> sch<span class="token punctuation">(</span>infographic<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li><code>shine</code>:</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballshine.png" alt=""></p>
+<pre class="language-py">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> sch<span class="token punctuation">(</span>shine<span class="token punctuation">)</span>
+</pre>
+<h5 class="mume-header" id="%E6%B0%B4%E7%90%83%E4%B8%8A%E7%9A%84%E6%96%87%E5%AD%97">水球上的文字</h5>
+
+<ul>
+<li>基本文字添加</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballtext1.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">text</span><span class="token punctuation">(</span>你好\n章鱼猫<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>使用 \n 和空格控制文字的位置</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballtext2.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">text</span><span class="token punctuation">(</span>你  好\n\n章  鱼  猫<span class="token punctuation">)</span>
+</pre>
+<h5 class="mume-header" id="%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0">文件名称</h5>
+
+<ul>
+<li>代码</li>
+</ul>
+<pre class="language-js"><span class="token punctuation">.</span> wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">text</span><span class="token punctuation">(</span>你  好\n\n章  鱼  猫<span class="token punctuation">)</span> <span class="token function">html</span><span class="token punctuation">(</span>章鱼猫<span class="token punctuation">)</span>
+点击章鱼猫<span class="token punctuation">.</span>html即可打开结果文件
+</pre>
+<ul>
+<li>结果</li>
+</ul>
+<pre class="language-js"><span class="token punctuation">.</span> wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">text</span><span class="token punctuation">(</span>你  好\n\n章  鱼  猫<span class="token punctuation">)</span> <span class="token function">html</span><span class="token punctuation">(</span>章鱼猫<span class="token punctuation">)</span>
+点击章鱼猫<span class="token punctuation">.</span>html即可打开结果文件
+</pre>
+<h5 class="mume-header" id="%E5%A4%96%E8%A7%82">外观</h5>
+
+<ul>
+<li>tax</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballtax.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">text</span><span class="token punctuation">(</span>你好\n\水球<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>tax<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>wechat</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballwechat.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">text</span><span class="token punctuation">(</span>你好\n\水球<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>wechat<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>trunk</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballtrunk.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">text</span><span class="token punctuation">(</span>你好\n\水球<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>trunk<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>weibo</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballweibo.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">text</span><span class="token punctuation">(</span>你好\n\水球<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>weibo<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>alipay</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballalipay.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>alipay<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>baidu</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballbaidu.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>baidu<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>wechat1</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballwechat1.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>wechat1<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>diamond</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballdiamond.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>diamond<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>rect</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballrect.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>rect<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>roundRect</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballroundRect.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>roundRect<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>pin</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballpin.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>pin<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>circle</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballcircle.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>circle<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>echarts</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballecharts.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>echarts<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>cup</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballcup.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>cup<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>arrow</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballarrow.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>arrow<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>man3star</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballman3star.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>man3star<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>triangle</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballtriangle.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>triangle<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>women1</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballwomen1.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>women1<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>women3</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballwomen3.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>women3<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>light</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballlight.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>light<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>pen</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballpen.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>pen<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>container</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballcontainer.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>container<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>mail</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballmail.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>mail<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>folder</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballfolder.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>folder<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>battery</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballbattery.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>battery<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>qq</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballqq.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>qq<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>wechatmoments</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballwechatmoments.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>wechatmoments<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>apple</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballapple.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>apple<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>chinamap</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballchinamap.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>chinamap<span class="token punctuation">)</span>
+</pre>
+<h5 class="mume-header" id="%E6%B0%B4%E7%90%83%E7%A9%BA%E7%99%BD%E5%8C%BA%E5%9F%9F%E7%9A%84%E9%A2%9C%E8%89%B2">水球空白区域的颜色</h5>
+
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballgreen.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>qq<span class="token punctuation">)</span> <span class="token function">color</span><span class="token punctuation">(</span>green<span class="token punctuation">)</span>
+</pre>
+<h5 class="mume-header" id="%E6%B0%B4%E6%B3%A2%E7%9A%84%E6%B3%A2%E5%B3%B0%E9%AB%98%E5%BA%A6">水波的波峰高度</h5>
+
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballa60.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>cup<span class="token punctuation">)</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token number">60</span><span class="token punctuation">)</span>
+</pre>
+<h5 class="mume-header" id="%E6%B0%B4%E6%B3%A2%E7%9A%84%E9%A2%9C%E8%89%B2">水波的颜色</h5>
+
+<h6 class="mume-header" id="%E4%BD%BF%E7%94%A8%E9%A2%9C%E8%89%B2%E7%9A%84%E5%90%8D%E7%A7%B0">使用颜色的名称</h6>
+
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballcolor.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>cup<span class="token punctuation">)</span>  <span class="token function">wavec</span><span class="token punctuation">(</span>red blue green yellow<span class="token punctuation">)</span>
+</pre>
+<h6 class="mume-header" id="%E4%BD%BF%E7%94%A8%E8%89%B2%E5%8D%A1">使用色卡</h6>
+
+<ul>
+<li>色卡2</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballcolorcard2.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>chinamap<span class="token punctuation">)</span>  <span class="token function">wavec</span><span class="token punctuation">(</span>card2<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>色卡3</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballcolorcard3.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>chinamap<span class="token punctuation">)</span>  <span class="token function">wavec</span><span class="token punctuation">(</span>card3<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>色卡4</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballcolorcard4.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>chinamap<span class="token punctuation">)</span>  <span class="token function">wavec</span><span class="token punctuation">(</span>card4<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>色卡4</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballcolorcard4.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>chinamap<span class="token punctuation">)</span>  <span class="token function">wavec</span><span class="token punctuation">(</span>card4<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>色卡5</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballcolorcard5.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>chinamap<span class="token punctuation">)</span>  <span class="token function">wavec</span><span class="token punctuation">(</span>card5<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>色卡6</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballcolorcard6.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>chinamap<span class="token punctuation">)</span>  <span class="token function">wavec</span><span class="token punctuation">(</span>card6<span class="token punctuation">)</span>
+</pre>
+<ul>
+<li>色卡7</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballcolorcard7.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>chinamap<span class="token punctuation">)</span>  <span class="token function">wavec</span><span class="token punctuation">(</span>card7<span class="token punctuation">)</span>
+</pre>
+<h6 class="mume-header" id="%E4%BD%BF%E7%94%A816%E8%BF%9B%E5%88%B6%E8%89%B2%E5%8F%B7">使用16进制色号</h6>
+
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballcolor16c.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>chinamap<span class="token punctuation">)</span>  <span class="token function">wavec</span><span class="token punctuation">(</span>#E8B647 #BA9132 #DCB879 #F98f45<span class="token punctuation">)</span>
+</pre>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/ewballcolor16d.png" alt=""></p>
+<pre class="language-js">wball <span class="token number">0.6</span> <span class="token number">0.5</span> <span class="token number">0.4</span> <span class="token number">0.3</span><span class="token punctuation">,</span> <span class="token function">sch</span><span class="token punctuation">(</span>vintage<span class="token punctuation">)</span> <span class="token function">shape</span><span class="token punctuation">(</span>chinamap<span class="token punctuation">)</span>  <span class="token function">wavec</span><span class="token punctuation">(</span>#5DAC81 #36563C #A8D8B9 #24936E<span class="token punctuation">)</span>
+</pre>
+<h4 class="mume-header" id="%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B0%B4%E7%90%83%E5%A4%96%E8%A7%82">自定义水球外观</h4>
+
+<ul>
+<li>虽然该命令内置了很多外观，但是这可能依然不够使用，下面将会介绍如何定制自己的外观。</li>
+<li>首先百度一下找一个提供svg图形素材的网站，例如<a href="http://www.sfont.cn/">http://www.sfont.cn/</a></li>
+<li>进入这个网站：</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/svg1.png" alt=""></p>
+<ul>
+<li>找到一个自己喜欢的外观：</li>
+<li>例如这个：</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/svg2.png" alt=""></p>
+<ul>
+<li>下载svg文件：</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/svg3.png" alt=""></p>
+<ul>
+<li>选择本地下载</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/svg4.png" alt=""></p>
+<ul>
+<li>然后用<code>文本编辑器</code>打开这个svg文件:</li>
+</ul>
+<pre class="language-html"><span class="token prolog">&lt;?xml version="1.0" encoding="utf-8"?></span>
+<span class="token comment" spellcheck="true">&lt;!-- Svg Vector Icons : http://www.sfont.cn --></span>
+<span class="token doctype">&lt;!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>1.1<span class="token punctuation">"</span></span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/svg<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xmlns:</span>xlink</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>http://www.w3.org/1999/xlink<span class="token punctuation">"</span></span> <span class="token attr-name">x</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0px<span class="token punctuation">"</span></span> <span class="token attr-name">y</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0px<span class="token punctuation">"</span></span> <span class="token attr-name">viewBox</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>0 0 1000 1000<span class="token punctuation">"</span></span> <span class="token attr-name">enable-background</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>new 0 0 1000 1000<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">xml:</span>space</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>preserve<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>metadata</span><span class="token punctuation">></span></span> Svg Vector Icons : http://www.sfont.cn <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>metadata</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>M839.1,513c-0.5,0-0.9,0.3-1.5,0.3l-29.6-51.2c1.9-2.6,3.3-5.6,3.3-9.2c0-8.6-7-15.7-15.7-15.7c-6.3,0-11.7,3.8-14.2,9.2h-59.1c-2.5-5.4-7.8-9.2-14.2-9.2c-8.6,0-15.7,7-15.7,15.7c0,3,1,5.6,2.5,7.9l-11.3,19.6l-10.6-18.4c1.9-2.6,3.3-5.6,3.3-9.2c0-8.6-7-15.7-15.6-15.7c-6.3,0-11.7,3.8-14.2,9.2h-59.1c-2.5-5.4-7.8-9.2-14.2-9.2c-8.6,0-15.7,7-15.7,15.7c0,2.9,1,5.6,2.5,7.9l-30.2,52.2c-8.5,0.2-15.3,7.1-15.3,15.6c0,8.3,6.5,14.9,14.6,15.4l30.2,52.3c-1.1,2.1-1.9,4.5-1.9,7c0,8.6,7,15.6,15.7,15.6c5.4,0,9.9-2.9,12.8-7.1h19l-7.7,13.3c-8.4,0.2-15.3,7.1-15.3,15.6c0,8.3,6.5,14.8,14.6,15.4l30.2,52.3c-1.1,2.2-1.9,4.5-1.9,7c0,8.6,7,15.7,15.7,15.7c5.4,0,10-3,12.8-7.2h61.8c2.8,4.2,7.3,7.2,12.8,7.2c8.6,0,15.7-7,15.7-15.7c0-3-1.1-5.7-2.6-8.2l29.5-51.1c0.4,0,0.7,0.2,1,0.2c8.6,0,15.6-7,15.6-15.7c0-8.7-7-15.7-15.6-15.7c-0.5,0-1,0.2-1.5,0.3l-7.9-13.5h20.5c2.8,4.2,7.4,7.2,12.8,7.2c8.6,0,15.7-7,15.7-15.7c0-3.1-1.1-5.8-2.7-8.2l29.5-51.1c0.4,0,0.7,0.2,1,0.2c8.6,0,15.7-7,15.7-15.7C854.8,520,847.8,513,839.1,513z M683.8,504.7l8.4,14.5c-2.1,2.6-3.5,5.8-3.5,9.5c0,3.8,1.5,7.3,3.9,10l-8.6,15l-7.9-13.6c3.1-2.8,5-6.8,5-11.4c0-4.4-1.7-8.3-4.6-11.1L683.8,504.7z M588.4,599.9c-1.7-6.8-7.6-12-14.9-12c-1.5,0-2.9,0.5-4.3,0.9l-28-48.6c3.1-2.8,5.1-6.8,5.1-11.4c0-4.3-1.8-8.3-4.6-11.1l28.7-49.7c1.1,0.3,2.1,0.6,3.3,0.6c6.6,0,12.2-4.2,14.5-10h58.4c2.3,5.9,7.8,10,14.5,10c0.7,0,1.3-0.3,1.9-0.4l14.1,24.4L665,513.1c-8.4,0.2-15.3,7.1-15.3,15.6c0,8.3,6.5,14.9,14.6,15.4l8.3,14.5h-17.6c-2.5-5.4-7.9-9.2-14.2-9.2c-8.6,0-15.7,7-15.7,15.6c0,3,1,5.6,2.5,8L612.3,600L588.4,599.9L588.4,599.9L588.4,599.9z M674,570.7l-10.2,17.7c-1-0.2-1.9-0.6-2.9-0.6c-7.4,0-13.3,5.2-14.9,12h-19.7l11.5-19.7c1.1,0.2,2.1,0.6,3.2,0.6c6.7,0,12.2-4.2,14.5-10L674,570.7L674,570.7L674,570.7z M731.2,700.6c-1-0.2-1.9-0.6-3-0.6c-7.4,0-13.3,5.2-14.9,12h-57.5c-1.6-6.8-7.6-12-14.9-12c-1.5,0-2.9,0.5-4.3,0.9l-28-48.6c3.1-2.9,5.1-6.9,5.1-11.4c0-4.4-1.7-8.3-4.6-11.1l10.3-17.8h28.8c2.8,4.2,7.4,7.1,12.8,7.1c8.6,0,15.7-7,15.7-15.7c0-3.1-1.1-5.8-2.6-8.2l10-17.3l10.7,18.5c-1.1,2.1-1.9,4.5-1.9,7c0,8.6,7,15.7,15.7,15.7c5.4,0,10-2.9,12.8-7.1h27.3l11.2,19.3c-2.1,2.6-3.5,5.9-3.5,9.6c0,3.8,1.5,7.2,3.8,10L731.2,700.6z M693.6,570.7h20.1c2.3,5.9,7.9,10,14.5,10c0.7,0,1.2-0.3,1.9-0.4l11.3,19.6h-18.2c-1.6-6.9-7.6-12.1-14.9-12.1c-1.5,0-2.9,0.5-4.3,0.9L693.6,570.7z M798.7,588.4c-1-0.2-1.9-0.6-3-0.6c-7.4,0-13.3,5.2-14.9,12h-25.4l-14.8-25.6c1.9-2.6,3.3-5.6,3.3-9.2c0-8.6-7-15.6-15.6-15.6c-6.3,0-11.7,3.7-14.2,9.2H695l8.3-14.5c0.4,0.1,0.6,0.2,1,0.2c8.6,0,15.7-7,15.7-15.7c0-8.7-7-15.7-15.7-15.7c-0.5,0-1,0.3-1.5,0.3l-12-20.8l14.2-24.7c1.1,0.3,2.1,0.7,3.3,0.7c6.6,0,12.3-4.2,14.5-10h58.4c2.3,5.8,7.9,10,14.5,10c0.6,0,1.2-0.3,1.9-0.4l29.4,51c-2.1,2.6-3.6,5.8-3.6,9.5c0,3.8,1.5,7.3,3.8,10L798.7,588.4z M300.1,629.2c6.2,4.2,14.9,7.3,24.7,8.7c4.1,0.6,8.3,1,12.7,1c4.4,0,8.7-0.4,12.7-1c9.8-1.5,18.5-4.6,24.7-8.7c-2.2,3.4-5.8,6.2-10,8.7c-7.2,4.3-16.7,7.1-27.4,7.1c-10.7,0-20.2-2.8-27.4-7.1C305.9,635.3,302.3,632.5,300.1,629.2z M375.3,558.7c0-2.2,0.6-4.3,1.4-6.2c2.4-5.2,7.5-8.8,13.6-8.8c6.1,0,11.2,3.6,13.6,8.8c0.8,1.9,1.4,3.9,1.4,6.2c0,8.3-6.7,15-15,15C382,573.7,375.3,567,375.3,558.7z M269.7,558.7c0-2.2,0.5-4.3,1.4-6.2c2.4-5.2,7.5-8.8,13.5-8.8c6.1,0,11.3,3.6,13.6,8.8c0.9,1.9,1.4,3.9,1.4,6.2c0,8.3-6.7,15-15,15C276.5,573.7,269.7,567,269.7,558.7z M955.2,887.9V296h-430L782.6,38.6L754,10L500,264L246.1,10l-28.5,28.6L474.9,296H44.8v591.9h332.2v43.8h-83.4V990h412.7v-58.4H623v-43.8L955.2,887.9L955.2,887.9z M217,548.3c1.6-6.4,20.8-38.9,76.7-38.9c10.2,0,21.3,1.1,32.8,3.3c22.8,4.3,41.5-6.1,53-28.4c0.6,3.6,3.9,21.8,9.6,29.8c14.3,20.2,37.3,17.8,42.6,16.3c4.2-1.2,7.7-3,10.7-5.3c6.6,10.5,9.5,19.6,10,22.8l-4.6,5.4h8.4c0.8,0,1.8,0,2.9-1.4l0,0c0.3-0.4,0.5-0.7,0.8-1.3c1.2-2.3,2.6-6.5,3.9-14.3c7.7,3.3,13.1,12.9,13.1,24.3c0,14.4-8.3,26-18.2,26c0,0,0,0,0,0c-0.4-0.2-1-0.4-1.8-0.5l-3.2-0.4l-1.1,3.1c-3.9,11.6-9.6,22.1-16.4,31.7c-12.7,17.7-30,31.6-49.9,40.3c-15.1,6.6-31.6,10.6-48.8,10.6c-18.5,0-36.2-4.3-52.1-11.9c-18.5-8.8-34.6-22.1-46.6-39c-6.8-9.6-12.5-20.2-16.4-31.7l-1-3.1l-3.2,0.5l-1.5,0.5c-10.2,0-18.5-11.6-18.5-26c0-7.9,2.6-15,7-19.8c1.7,5.6,3.2,8.6,4.5,10.3c0,0,0,0.2,0,0.2h0.1c1.6,1.9,3,1.9,4.2,1.9l5.3-1.1L217,548.3z M304.5,729L288,669.2c15.4,6.4,32.1,10.2,49.5,10.2c16.2,0,31.7-3.4,46.2-8.9L367.6,729L352,785.8h-31.9L304.5,729z M548.6,785.8c-5.1-47.1-25.5-89.4-56.1-122.2V543.4c0-95.3-69.4-172.7-155-172.7c-85.5,0-154.9,77.4-154.9,172.7v120.2c-30.7,32.8-51.1,75.1-56.2,122.2h-21V356.5h789.2v429.3L548.6,785.8L548.6,785.8z<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>g</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">></span></span>
+</pre>
+<ul>
+<li>我们把这段：</li>
+</ul>
+<pre class="language-">path d=&quot;M839.1,513c-0.5,0-0.9,0.3-1.5,0.3l-29.6-51.2c1.9-2.6,3.3-5.6,3.3-9.2c0-8.6-7-15.7-15.7-15.7c-6.3,0-11.7,3.8-14.2,9.2h-59.1c-2.5-5.4-7.8-9.2-14.2-9.2c-8.6,0-15.7,7-15.7,15.7c0,3,1,5.6,2.5,7.9l-11.3,19.6l-10.6-18.4c1.9-2.6,3.3-5.6,3.3-9.2c0-8.6-7-15.7-15.6-15.7c-6.3,0-11.7,3.8-14.2,9.2h-59.1c-2.5-5.4-7.8-9.2-14.2-9.2c-8.6,0-15.7,7-15.7,15.7c0,2.9,1,5.6,2.5,7.9l-30.2,52.2c-8.5,0.2-15.3,7.1-15.3,15.6c0,8.3,6.5,14.9,14.6,15.4l30.2,52.3c-1.1,2.1-1.9,4.5-1.9,7c0,8.6,7,15.6,15.7,15.6c5.4,0,9.9-2.9,12.8-7.1h19l-7.7,13.3c-8.4,0.2-15.3,7.1-15.3,15.6c0,8.3,6.5,14.8,14.6,15.4l30.2,52.3c-1.1,2.2-1.9,4.5-1.9,7c0,8.6,7,15.7,15.7,15.7c5.4,0,10-3,12.8-7.2h61.8c2.8,4.2,7.3,7.2,12.8,7.2c8.6,0,15.7-7,15.7-15.7c0-3-1.1-5.7-2.6-8.2l29.5-51.1c0.4,0,0.7,0.2,1,0.2c8.6,0,15.6-7,15.6-15.7c0-8.7-7-15.7-15.6-15.7c-0.5,0-1,0.2-1.5,0.3l-7.9-13.5h20.5c2.8,4.2,7.4,7.2,12.8,7.2c8.6,0,15.7-7,15.7-15.7c0-3.1-1.1-5.8-2.7-8.2l29.5-51.1c0.4,0,0.7,0.2,1,0.2c8.6,0,15.7-7,15.7-15.7C854.8,520,847.8,513,839.1,513z M683.8,504.7l8.4,14.5c-2.1,2.6-3.5,5.8-3.5,9.5c0,3.8,1.5,7.3,3.9,10l-8.6,15l-7.9-13.6c3.1-2.8,5-6.8,5-11.4c0-4.4-1.7-8.3-4.6-11.1L683.8,504.7z M588.4,599.9c-1.7-6.8-7.6-12-14.9-12c-1.5,0-2.9,0.5-4.3,0.9l-28-48.6c3.1-2.8,5.1-6.8,5.1-11.4c0-4.3-1.8-8.3-4.6-11.1l28.7-49.7c1.1,0.3,2.1,0.6,3.3,0.6c6.6,0,12.2-4.2,14.5-10h58.4c2.3,5.9,7.8,10,14.5,10c0.7,0,1.3-0.3,1.9-0.4l14.1,24.4L665,513.1c-8.4,0.2-15.3,7.1-15.3,15.6c0,8.3,6.5,14.9,14.6,15.4l8.3,14.5h-17.6c-2.5-5.4-7.9-9.2-14.2-9.2c-8.6,0-15.7,7-15.7,15.6c0,3,1,5.6,2.5,8L612.3,600L588.4,599.9L588.4,599.9L588.4,599.9z M674,570.7l-10.2,17.7c-1-0.2-1.9-0.6-2.9-0.6c-7.4,0-13.3,5.2-14.9,12h-19.7l11.5-19.7c1.1,0.2,2.1,0.6,3.2,0.6c6.7,0,12.2-4.2,14.5-10L674,570.7L674,570.7L674,570.7z M731.2,700.6c-1-0.2-1.9-0.6-3-0.6c-7.4,0-13.3,5.2-14.9,12h-57.5c-1.6-6.8-7.6-12-14.9-12c-1.5,0-2.9,0.5-4.3,0.9l-28-48.6c3.1-2.9,5.1-6.9,5.1-11.4c0-4.4-1.7-8.3-4.6-11.1l10.3-17.8h28.8c2.8,4.2,7.4,7.1,12.8,7.1c8.6,0,15.7-7,15.7-15.7c0-3.1-1.1-5.8-2.6-8.2l10-17.3l10.7,18.5c-1.1,2.1-1.9,4.5-1.9,7c0,8.6,7,15.7,15.7,15.7c5.4,0,10-2.9,12.8-7.1h27.3l11.2,19.3c-2.1,2.6-3.5,5.9-3.5,9.6c0,3.8,1.5,7.2,3.8,10L731.2,700.6z M693.6,570.7h20.1c2.3,5.9,7.9,10,14.5,10c0.7,0,1.2-0.3,1.9-0.4l11.3,19.6h-18.2c-1.6-6.9-7.6-12.1-14.9-12.1c-1.5,0-2.9,0.5-4.3,0.9L693.6,570.7z M798.7,588.4c-1-0.2-1.9-0.6-3-0.6c-7.4,0-13.3,5.2-14.9,12h-25.4l-14.8-25.6c1.9-2.6,3.3-5.6,3.3-9.2c0-8.6-7-15.6-15.6-15.6c-6.3,0-11.7,3.7-14.2,9.2H695l8.3-14.5c0.4,0.1,0.6,0.2,1,0.2c8.6,0,15.7-7,15.7-15.7c0-8.7-7-15.7-15.7-15.7c-0.5,0-1,0.3-1.5,0.3l-12-20.8l14.2-24.7c1.1,0.3,2.1,0.7,3.3,0.7c6.6,0,12.3-4.2,14.5-10h58.4c2.3,5.8,7.9,10,14.5,10c0.6,0,1.2-0.3,1.9-0.4l29.4,51c-2.1,2.6-3.6,5.8-3.6,9.5c0,3.8,1.5,7.3,3.8,10L798.7,588.4z M300.1,629.2c6.2,4.2,14.9,7.3,24.7,8.7c4.1,0.6,8.3,1,12.7,1c4.4,0,8.7-0.4,12.7-1c9.8-1.5,18.5-4.6,24.7-8.7c-2.2,3.4-5.8,6.2-10,8.7c-7.2,4.3-16.7,7.1-27.4,7.1c-10.7,0-20.2-2.8-27.4-7.1C305.9,635.3,302.3,632.5,300.1,629.2z M375.3,558.7c0-2.2,0.6-4.3,1.4-6.2c2.4-5.2,7.5-8.8,13.6-8.8c6.1,0,11.2,3.6,13.6,8.8c0.8,1.9,1.4,3.9,1.4,6.2c0,8.3-6.7,15-15,15C382,573.7,375.3,567,375.3,558.7z M269.7,558.7c0-2.2,0.5-4.3,1.4-6.2c2.4-5.2,7.5-8.8,13.5-8.8c6.1,0,11.3,3.6,13.6,8.8c0.9,1.9,1.4,3.9,1.4,6.2c0,8.3-6.7,15-15,15C276.5,573.7,269.7,567,269.7,558.7z M955.2,887.9V296h-430L782.6,38.6L754,10L500,264L246.1,10l-28.5,28.6L474.9,296H44.8v591.9h332.2v43.8h-83.4V990h412.7v-58.4H623v-43.8L955.2,887.9L955.2,887.9z M217,548.3c1.6-6.4,20.8-38.9,76.7-38.9c10.2,0,21.3,1.1,32.8,3.3c22.8,4.3,41.5-6.1,53-28.4c0.6,3.6,3.9,21.8,9.6,29.8c14.3,20.2,37.3,17.8,42.6,16.3c4.2-1.2,7.7-3,10.7-5.3c6.6,10.5,9.5,19.6,10,22.8l-4.6,5.4h8.4c0.8,0,1.8,0,2.9-1.4l0,0c0.3-0.4,0.5-0.7,0.8-1.3c1.2-2.3,2.6-6.5,3.9-14.3c7.7,3.3,13.1,12.9,13.1,24.3c0,14.4-8.3,26-18.2,26c0,0,0,0,0,0c-0.4-0.2-1-0.4-1.8-0.5l-3.2-0.4l-1.1,3.1c-3.9,11.6-9.6,22.1-16.4,31.7c-12.7,17.7-30,31.6-49.9,40.3c-15.1,6.6-31.6,10.6-48.8,10.6c-18.5,0-36.2-4.3-52.1-11.9c-18.5-8.8-34.6-22.1-46.6-39c-6.8-9.6-12.5-20.2-16.4-31.7l-1-3.1l-3.2,0.5l-1.5,0.5c-10.2,0-18.5-11.6-18.5-26c0-7.9,2.6-15,7-19.8c1.7,5.6,3.2,8.6,4.5,10.3c0,0,0,0.2,0,0.2h0.1c1.6,1.9,3,1.9,4.2,1.9l5.3-1.1L217,548.3z M304.5,729L288,669.2c15.4,6.4,32.1,10.2,49.5,10.2c16.2,0,31.7-3.4,46.2-8.9L367.6,729L352,785.8h-31.9L304.5,729z M548.6,785.8c-5.1-47.1-25.5-89.4-56.1-122.2V543.4c0-95.3-69.4-172.7-155-172.7c-85.5,0-154.9,77.4-154.9,172.7v120.2c-30.7,32.8-51.1,75.1-56.2,122.2h-21V356.5h789.2v429.3L548.6,785.8L548.6,785.8z
+</pre>
+<ul>
+<li>把开头：</li>
+</ul>
+<pre class="language-">path d=&quot;
+</pre>
+<ul>
+<li>改成</li>
+</ul>
+<pre class="language-">path://
+</pre>
+<ul>
+<li>然后我们打开一个html文件，找到41行的shape，把我们修改好的这段替换进去：</li>
+</ul>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/svg5.png" alt=""></p>
+<p><img src="https://github.com/czxa/Web_data_Source/raw/master/svg6.png" alt=""></p>
+<h4 class="mume-header" id="%E6%9B%B4%E5%A4%9A%E9%85%8D%E7%BD%AE%E6%AD%A3%E5%9C%A8%E6%8E%A2%E7%B4%A2%E4%B8%AD">更多配置正在探索中···</h4>
+
+<ul>
+<li>敬请期待</li>
+</ul>
+
+      </div>
+      <div class="md-sidebar-toc"><ul>
+<li><a href="#center-%E7%9B%AE%E5%BD%95-center"> 目录 </a>
+<ul>
+<li><a href="#%E5%AE%89%E8%A3%85">安装</a>
+<ul>
+<li><a href="#center%E5%AE%89%E8%A3%85%E6%96%B9%E5%BC%8F%E4%B8%80center">安装方式一：</a></li>
+<li><a href="#center%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95%E4%BA%8Ccenter">安装方法二：</a></li>
+</ul>
+</li>
+<li><a href="#%E8%AF%AD%E6%B3%95">语法</a>
+<ul>
+<li><a href="#%E5%8F%82%E6%95%B0">参数</a></li>
+<li><a href="#%E9%80%89%E9%A1%B9">选项</a></li>
+</ul>
+</li>
+<li><a href="#%E7%A4%BA%E4%BE%8B">示例</a>
+<ul>
+<li><a href="#%E4%B8%BB%E9%A2%98">主题</a></li>
+<li><a href="#%E6%B0%B4%E7%90%83%E4%B8%8A%E7%9A%84%E6%96%87%E5%AD%97">水球上的文字</a></li>
+<li><a href="#%E6%96%87%E4%BB%B6%E5%90%8D%E7%A7%B0">文件名称</a></li>
+<li><a href="#%E5%A4%96%E8%A7%82">外观</a></li>
+<li><a href="#%E6%B0%B4%E7%90%83%E7%A9%BA%E7%99%BD%E5%8C%BA%E5%9F%9F%E7%9A%84%E9%A2%9C%E8%89%B2">水球空白区域的颜色</a></li>
+<li><a href="#%E6%B0%B4%E6%B3%A2%E7%9A%84%E6%B3%A2%E5%B3%B0%E9%AB%98%E5%BA%A6">水波的波峰高度</a></li>
+<li><a href="#%E6%B0%B4%E6%B3%A2%E7%9A%84%E9%A2%9C%E8%89%B2">水波的颜色</a>
+<ul>
+<li><a href="#%E4%BD%BF%E7%94%A8%E9%A2%9C%E8%89%B2%E7%9A%84%E5%90%8D%E7%A7%B0">使用颜色的名称</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E8%89%B2%E5%8D%A1">使用色卡</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A816%E8%BF%9B%E5%88%B6%E8%89%B2%E5%8F%B7">使用16进制色号</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B0%B4%E7%90%83%E5%A4%96%E8%A7%82">自定义水球外观</a></li>
+<li><a href="#%E6%9B%B4%E5%A4%9A%E9%85%8D%E7%BD%AE%E6%AD%A3%E5%9C%A8%E6%8E%A2%E7%B4%A2%E4%B8%AD">更多配置正在探索中···</a></li>
+</ul>
+</li>
+</ul>
+</div>
+      <a id="sidebar-toc-btn">≡</a>
+    </body>
+    
+    
+    
+    
+    
+    <script>
+(function bindTaskListEvent() {
+  var taskListItemCheckboxes = document.body.getElementsByClassName('task-list-item-checkbox')
+  for (var i = 0; i < taskListItemCheckboxes.length; i++) {
+    var checkbox = taskListItemCheckboxes[i]
+    var li = checkbox.parentElement
+    if (li.tagName !== 'LI') li = li.parentElement
+    if (li.tagName === 'LI') {
+      li.classList.add('task-list-item')
+    }
+  }
+}())    
+</script>
+    
+<script>
+
+var sidebarTOCBtn = document.getElementById('sidebar-toc-btn')
+sidebarTOCBtn.addEventListener('click', function(event) {
+  event.stopPropagation()
+  if (document.body.hasAttribute('html-show-sidebar-toc')) {
+    document.body.removeAttribute('html-show-sidebar-toc')
+  } else {
+    document.body.setAttribute('html-show-sidebar-toc', true)
+  }
+})
+</script>
+      
+  </html>
